@@ -12,6 +12,7 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerPermission]
+    search_fields = ['title', 'description', 'location']
 
     def perform_create(self, serializer):
         serializer.save(organizer=self.request.user)
@@ -30,14 +31,3 @@ class EventViewSet(viewsets.ModelViewSet):
             return Response({'status': 'unregistered'})
         else:
             return Response({'status': 'not registered'}, status=status.HTTP_400_BAD_REQUEST)
-
-    @action(detail=False, methods=['get'])
-    def search(self, request):
-        query = request.query_params.get('q', '')
-        events = Event.objects.filter(
-            Q(title__icontains=query) |
-            Q(description__icontains=query) |
-            Q(location__icontains=query)
-        )
-        serializer = self.get_serializer(events, many=True)
-        return Response(serializer.data)
