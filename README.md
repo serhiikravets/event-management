@@ -61,7 +61,7 @@ This guide will walk you through the process of creating and testing events usin
 3. **Perform CRUD Operations on Events**
     - **Create an Event**
         - Create a new request.
-        - Set the request method to `POST` and the URL to `http://localhost:8000/api/events/`.
+        - Set the request method to `POST` and the URL to `http://localhost:8000/events/`.
         - In the `Headers` tab, add two new keys:
             - `Content-Type` with the value `application/json`.
             - `Authorization` with the value `Bearer your-token`.
@@ -78,13 +78,13 @@ This guide will walk you through the process of creating and testing events usin
 
     - **Read an Event**
         - Create a new request.
-        - Set the request method to `GET` and the URL to `http://localhost:8000/api/events/event-id/`.
+        - Set the request method to `GET` and the URL to `http://localhost:8000/events/event-id/`.
         - In the `Headers` tab, add a new key `Authorization` with the value `Bearer your-jwt-token`.
         - Send the request. The response should include the details of the event.
 
     - **Update an Event**
         - Create a new request.
-        - Set the request method to `PUT` and the URL to `http://localhost:8000/api/events/event-id/`.
+        - Set the request method to `PUT` and the URL to `http://localhost:8000/events/event-id/`.
         - In the `Headers` tab, add two new keys:
             - `Content-Type` with the value `application/json`.
             - `Authorization` with the value `Bearer your-token`.
@@ -93,13 +93,13 @@ This guide will walk you through the process of creating and testing events usin
 
     - **Delete an Event**
         - Create a new request.
-        - Set the request method to `DELETE` and the URL to `http://localhost:8000/api/events/event-id/`.
+        - Set the request method to `DELETE` and the URL to `http://localhost:8000/events/event-id/`.
         - In the `Headers` tab, add a new key `Authorization` with the value `Bearer your-jwt-token`.
         - Send the request. The response should confirm the deletion of the event.
 
 4. **Search for an Event**
     - Create a new request.
-    - Set the request method to `GET` and the URL to `http://localhost:8000/api/events/?search=your-search-query`.
+    - Set the request method to `GET` and the URL to `http://localhost:8000/events?search=your-search-query`.
     - In the `Headers` tab, add a new key `Authorization` with the value `Bearer your-jwt-token`.
     - Send the request. The response should include the events that match your search query.
 
