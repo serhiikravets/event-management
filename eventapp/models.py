@@ -14,6 +14,3 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
-
-    def get_number_of_attendees(self):
-        return self.attendees.all().count()
