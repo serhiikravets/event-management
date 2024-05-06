@@ -1,7 +1,6 @@
-from rest_framework import viewsets, permissions, status
+from rest_framework import viewsets, permissions, status, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from django.db.models import Q
 
 from eventapp.models import Event
 from eventapp.permissions import IsOwnerPermission
@@ -12,6 +11,7 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerPermission]
+    filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'description', 'location']
 
     def perform_create(self, serializer):
