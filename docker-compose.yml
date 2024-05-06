@@ -1,0 +1,26 @@
+name: django-event
+
+services:
+  server:
+    build: .
+    container_name: django
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/django-event
+    depends_on:
+      - db
+    restart: always
+  db:
+    image: postgres:14
+    restart: unless-stopped
+    ports:
+      - 5679:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+volumes:
+  postgres_data:
